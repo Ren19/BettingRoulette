@@ -36,7 +36,7 @@ namespace BettingRoulette
             });
             services.AddControllers();
             services.AddScoped<IRouletteRepository, RouletteRepository>();
-            //services.AddScoped<IRouletteService, RouletteService>();
+            services.AddScoped<IRouletteService, RouletteService>();
             services.AddSingleton<IDateFormat>(x => new DateFormat(Configuration["TimeZone"]));
             services.AddTransient<ILogRegisterService>(r => new LogRegisterService(secretsSettings));
             services.AddEasyCaching(options =>
@@ -65,12 +65,12 @@ namespace BettingRoulette
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger(c =>
                 {
-                    c.RouteTemplate = "roulette/{documentName}/swagger.json";
+                    c.RouteTemplate = "api/masivian/{documentName}/swagger.json";
                 });
                 app.UseSwaggerUI(c =>
                 {
-                    c.SwaggerEndpoint("/roulette/v1/swagger.json", "My API V1");
-                    c.RoutePrefix = "digitalidentity/keyboard";
+                    c.SwaggerEndpoint("/api/masivian/v1/swagger.json", "My API V1");
+                    c.RoutePrefix = "api/masivian";
 
                 });
             }

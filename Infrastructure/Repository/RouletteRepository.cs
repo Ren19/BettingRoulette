@@ -1,6 +1,5 @@
 ﻿using BettingRoulette.Common;
-using BettingRoulette.Model.Input;
-using BettingRoulette.Model.Output;
+using BettingRoulette.Model;
 using EasyCaching.Core;
 using System;
 using System.Collections.Generic;
@@ -16,34 +15,36 @@ namespace BettingRoulette.Infrastructure.Repository
         {
             _cachingProvider = provider ?? throw new ArgumentNullException(nameof(provider));
         }
-        public List<RouletteOutput> GetAll()
+        public List<Roulette> GetAll()
         {
-            var rouletes = _cachingProvider.GetByPrefix<RouletteOutput>(Constants.REDIS_KEY_ROULETTE);
-            if (rouletes.Values.Count == 0)
+            var listRoulette = _cachingProvider.GetByPrefix<Roulette>(Constants.REDIS_KEY_ROULETTE);
+            if (listRoulette.Values.Count == 0)
             {
-                return new List<RouletteOutput>();
+                return new List<Roulette>();
             }
 
-            return new List<RouletteOutput>(rouletes.Select(x => x.Value.Value));
+            return new List<Roulette>(listRoulette.Select(x => x.Value.Value));
         }
-        public RouletteOutput GetById(string Id)
+        public Roulette GetById(SearchRoulette model)
         {
-            var item = _cachingProvider.Get<RouletteOutput>($"{Constants.REDIS_KEY_ROULETTE}{Id}");
+            var item = _cachingProvider.Get<Roulette>($"{Constants.REDIS_KEY_ROULETTE}{model.Id}");
             if (!item.HasValue)
             {
                 return null;
             }
             return item.Value;
         }
-        public RouletteOutput Save(RouletteInput roulette)
+        public Roulette Save(Roulette roulette)
         {
-            _cachingProvider.Set($"{Constants.REDIS_KEY_ROULETTE}{roulette.Id}", roulette, TimeSpan.FromDays(365));
-            return new RouletteOutput() { Id = roulette.Id };
+            var rouletteExecute = new Roulette() { Id = roulette.Id, Open = roulette.Open, OpeningDate = roulette.OpeningDate, ClosingDate = roulette.ClosingDate };
+            _cachingProvider.Set($"{Constants.REDIS_KEY_ROULETTE}{rouletteExecute.Id}", rouletteExecute, TimeSpan.FromDays(365));
+            return rouletteExecute;
         }
-        public RouletteOutput Update(string Id, RouletteInput roulette)
+        /*
+        public Roulette Update(Roulette roulette)
         {
-            roulette.Id = Id;
             return Save(roulette);
         }
+        */
     }
 }

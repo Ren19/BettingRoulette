@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BettingRoulette.Model.Input
+namespace BettingRoulette.Model
 {
-    public class BetInput
+    public class CloseRoulette
     {
-
+        public string Id { get; set; }
     }
 }
