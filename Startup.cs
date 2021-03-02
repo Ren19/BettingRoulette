@@ -1,4 +1,5 @@
 using BettingRoulette.Common.GenericClass;
+using BettingRoulette.Infrastructure.Repository;
 using BettingRoulette.Infrastructure.Services;
 using EasyCaching.InMemory;
 using Microsoft.AspNetCore.Builder;
@@ -34,7 +35,7 @@ namespace BettingRoulette
                 });
             });
             services.AddControllers();
-            //services.AddScoped<IRouletteRepository, RouletteRepository>();
+            services.AddScoped<IRouletteRepository, RouletteRepository>();
             //services.AddScoped<IRouletteService, RouletteService>();
             services.AddSingleton<IDateFormat>(x => new DateFormat(Configuration["TimeZone"]));
             services.AddTransient<ILogRegisterService>(r => new LogRegisterService(secretsSettings));

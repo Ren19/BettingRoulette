@@ -2,71 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BettingRoulette.Infrastructure.Services;
+using BettingRoulette.Model.Output;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BettingRoulette.Controllers
 {
-    public class RouletteController : Controller
+    [Route("api/masivian/[controller]")]
+    [ApiController]
+    public class RouletteController : ControllerBase
     {
-        public ActionResult Index()
+        IRouletteService _rouletteService;
+        public RouletteController(IRouletteService rouletteService)
         {
-            return View();
+            _rouletteService = rouletteService ?? throw new ArgumentNullException(nameof(rouletteService));
         }
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-        public ActionResult Create()
-        {
-            return View();
-        }
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public IActionResult NewRoulette()
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            RouletteOutput roulette = _rouletteService.Create();
+            return Ok(roulette);
         }
     }
 }

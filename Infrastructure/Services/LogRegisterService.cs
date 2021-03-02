@@ -1,7 +1,6 @@
 ﻿using Amazon.CloudWatchLogs;
 using Amazon.CloudWatchLogs.Model;
 using BettingRoulette.Common.GenericClass;
-using BettingRoulette.Model.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;

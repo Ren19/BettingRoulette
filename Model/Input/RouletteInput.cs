@@ -8,5 +8,8 @@ namespace BettingRoulette.Model.Input
     public class RouletteInput
     {
         public string Id { get; set; }
+        public bool Open { get; set; } = false;
+        public DateTime? OpeningDate { get; set; }
+        public DateTime? ClosingDate { get; set; }
     }
 }

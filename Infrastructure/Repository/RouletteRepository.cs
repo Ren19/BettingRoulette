@@ -38,7 +38,7 @@ namespace BettingRoulette.Infrastructure.Repository
         public RouletteOutput Save(RouletteInput roulette)
         {
             _cachingProvider.Set($"{Constants.REDIS_KEY_ROULETTE}{roulette.Id}", roulette, TimeSpan.FromDays(365));
-            return new RouletteOutput();
+            return new RouletteOutput() { Id = roulette.Id };
         }
         public RouletteOutput Update(string Id, RouletteInput roulette)
         {
