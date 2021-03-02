@@ -36,15 +36,9 @@ namespace BettingRoulette.Infrastructure.Repository
         }
         public Roulette Save(Roulette roulette)
         {
-            var rouletteExecute = new Roulette() { Id = roulette.Id, Open = roulette.Open, OpeningDate = roulette.OpeningDate, ClosingDate = roulette.ClosingDate };
+            var rouletteExecute = new Roulette() { Id = roulette.Id, Open = roulette.Open, OpeningDate = roulette.OpeningDate, ClosingDate = roulette.ClosingDate, ListRouletteBetDetail = roulette.ListRouletteBetDetail };
             _cachingProvider.Set($"{Constants.REDIS_KEY_ROULETTE}{rouletteExecute.Id}", rouletteExecute, TimeSpan.FromDays(365));
             return rouletteExecute;
         }
-        /*
-        public Roulette Update(Roulette roulette)
-        {
-            return Save(roulette);
-        }
-        */
     }
 }

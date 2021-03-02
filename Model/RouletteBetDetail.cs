@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace BettingRoulette.Model
 {
-    public class Bet : AccountUser
+    public class RouletteBetDetail
     {
-        public string RouletteId { get; set; }
-        [Range(0, 38)]
         public int Number { get; set; }
-        [Range(0, maximum: 10000)]
-        public double Amount { get; set; }
+        public string Player { get; set; }
+        public double? AmountBet { get; set; }
+        public double? PrizeAmount { get; set; }
+        public bool Winner { get; set; }
         public bool IsColor { get; set; }
     }
 }

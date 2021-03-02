@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BettingRoulette.Infrastructure.Services
+namespace BettingRoulette.Infrastructure.Interfaces
 {
     public interface IRouletteService
     {
@@ -13,6 +13,6 @@ namespace BettingRoulette.Infrastructure.Services
         Roulette Open(OpenRoulette model);
         Roulette Search(SearchRoulette model);
         Roulette Close(CloseRoulette model);
-        Roulette Bet(Bet request, string UserId);
+        Roulette Bet(Bet model);
     }
 }

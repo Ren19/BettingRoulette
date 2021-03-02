@@ -1,4 +1,5 @@
 using BettingRoulette.Common.GenericClass;
+using BettingRoulette.Infrastructure.Interfaces;
 using BettingRoulette.Infrastructure.Repository;
 using BettingRoulette.Infrastructure.Services;
 using EasyCaching.InMemory;

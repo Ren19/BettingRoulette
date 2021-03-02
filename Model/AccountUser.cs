@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BettingRoulette.Infrastructure.Services
+namespace BettingRoulette.Model
 {
-    public interface IDateFormat
+    public class AccountUser
     {
-        DateTime GetDate();
+        public string UserId { get; set; }
     }
 }

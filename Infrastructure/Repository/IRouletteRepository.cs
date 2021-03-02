@@ -11,8 +11,5 @@ namespace BettingRoulette.Infrastructure.Repository
         public Roulette GetById(SearchRoulette model);
         public List<Roulette> GetAll();
         public Roulette Save(Roulette roulette);
-        /*
-         public Roulette Update(string Id, Roulette roulette);
-         */
     }
 }
