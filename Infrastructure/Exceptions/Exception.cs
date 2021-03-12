@@ -25,13 +25,11 @@ namespace BettingRoulette.Infrastructure.Exceptions
                 {
                     Messages = ((RouletteException)context.Exception).Messages
                 };
-
                 if (_env.IsEnvironment("Local")
                 || _env.IsDevelopment())
                 {
                     json.DeveloperMessage = context.Exception;
                 }
-
                 context.Result = new ObjectResult(json);
                 context.HttpContext.Response.StatusCode = ((RouletteException)context.Exception).HttpStatusCode;
             }
@@ -41,7 +39,6 @@ namespace BettingRoulette.Infrastructure.Exceptions
                 {
                     Messages = new[] { "An error occur.Try it again." }
                 };
-
                 if (_env.IsEnvironment("Local")
                 || _env.IsDevelopment())
                 {
@@ -50,7 +47,6 @@ namespace BettingRoulette.Infrastructure.Exceptions
                 context.Result = new ObjectResult(json);
                 context.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             }
-
             context.ExceptionHandled = true;
         }
     }
