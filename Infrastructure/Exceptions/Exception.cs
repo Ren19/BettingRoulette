@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using BettingRoulette.Common.GenericClass;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System;
@@ -51,11 +52,6 @@ namespace BettingRoulette.Infrastructure.Exceptions
             }
 
             context.ExceptionHandled = true;
-        }
-        public class JsonErrorResponse
-        {
-            public string[] Messages { get; set; }
-            public object DeveloperMessage { get; set; }
         }
     }
 }

@@ -19,9 +19,7 @@ namespace BettingRoulette.Infrastructure.Repository
         {
             var listRoulette = _cachingProvider.GetByPrefix<Roulette>(Constants.REDIS_KEY_ROULETTE);
             if (listRoulette.Values.Count == 0)
-            {
                 return new List<Roulette>();
-            }
 
             return new List<Roulette>(listRoulette.Select(x => x.Value.Value));
         }
@@ -29,9 +27,8 @@ namespace BettingRoulette.Infrastructure.Repository
         {
             var item = _cachingProvider.Get<Roulette>($"{Constants.REDIS_KEY_ROULETTE}{model.Id}");
             if (!item.HasValue)
-            {
                 return null;
-            }
+
             return item.Value;
         }
         public Roulette Save(Roulette roulette)

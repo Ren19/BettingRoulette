@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BettingRoulette.Common.GenericClass;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -25,11 +26,6 @@ namespace BettingRoulette.Infrastructure.Exceptions
         {
             HttpStatusCode = statusCode;
             Result = result;
-        }
-        public class ServiceResponse
-        {
-            public int Code { get; set; }
-            public string Message { get; set; }
         }
     }
 }
