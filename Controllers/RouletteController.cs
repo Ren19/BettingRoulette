@@ -58,12 +58,11 @@ namespace BettingRoulette.Controllers
             }
         }
         [HttpPut("bet")]
-        public IActionResult Bet([FromBody] Bet request, [FromHeader(Name = "user-id")] string userId)
+        public IActionResult Bet([FromBody] BetInitial request, [FromHeader(Name = "user-id")] string userId)
         {
             try
             {
-                request.UserId = userId;
-                _rouletteService.Bet(request);
+                _rouletteService.Bet(new Bet() { UserId = userId, Amount = request.Amount, IsColor = request.IsColor, Number = request.Number, RouletteId = request.RouletteId });
                 return Ok();
             }
             catch (Exception ex)
